@@ -7,7 +7,7 @@ import FakeCreateCustomerRepository from '../repositories/fakes/FakeCreateCustom
 let fakeCustomerRepository: FakeCreateCustomerRepository;
 let deleteCustomer: DeleteCustomerService;
 
-describe('DeleteCostomer', () => {
+describe('DeleteCostumer', () => {
   beforeEach(() => {
     fakeCustomerRepository = new FakeCreateCustomerRepository();
 
@@ -16,7 +16,7 @@ describe('DeleteCostomer', () => {
 
   it('Should be able to delete a customer.', async () => {
     const customer = await fakeCustomerRepository.create({
-      name: 'Jonh Doe One',
+      name: 'John Doe One',
       phone: '47000000000',
       address: 'Rua A, 10',
       city: 'São Francisco do Sul',

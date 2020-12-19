@@ -14,7 +14,7 @@ describe('DeleteProduct', () => {
     deleteProduct = new DeleteProductService(fakeCreateExpenseRepository);
   });
 
-  it('Should be able to delete a  product.', async () => {
+  it('Should be able to delete a product.', async () => {
     const product1 = await fakeCreateExpenseRepository.create({
       name: 'Expense',
       date: new Date(),
@@ -27,7 +27,7 @@ describe('DeleteProduct', () => {
     expect(delProduct).not.toEqual([product1]);
   });
 
-  it('Should be able to delete a  product.', async () => {
+  it('Should be not able to delete a product.', async () => {
     await expect(
       deleteProduct.execute({ id: 'not-found-id' }),
     ).rejects.toBeInstanceOf(AppError);

@@ -7,7 +7,7 @@ import FakeCreateCustomerRepository from '../repositories/fakes/FakeCreateCustom
 let fakeCustomerRepository: FakeCreateCustomerRepository;
 let createCustomer: CreateCustomerService;
 
-describe('CreateCostomer', () => {
+describe('CreateCostumer', () => {
   beforeEach(() => {
     fakeCustomerRepository = new FakeCreateCustomerRepository();
 
@@ -16,7 +16,7 @@ describe('CreateCostomer', () => {
 
   it('Should be able to create a new customer.', async () => {
     const customer = await createCustomer.execute({
-      name: 'Jonh Doe',
+      name: 'John Doe',
       phone: '(47)00000-0000',
       address: 'Rua A, 10',
       city: 'São Francisco do Sul',
@@ -28,21 +28,21 @@ describe('CreateCostomer', () => {
 
   it('Should be able to create a phone with 14 number.', async () => {
     const customer = await createCustomer.execute({
-      name: 'Jonh Doe',
+      name: 'John Doe',
       phone: '(47)00000-0000',
       address: 'Rua A, 10',
       city: 'São Francisco do Sul',
       neighborhood: 'Bairro',
     });
 
-    expect(customer.phone.length).toBe(11);
+    expect(customer.phone.length).toBe(14);
   });
 
-  it('Should be not able to create a phone with more 11 number.', async () => {
+  it('Should be not able to create a phone with more 14 number.', async () => {
     await expect(
       createCustomer.execute({
-        name: 'Jonh Doe',
-        phone: '(47)00000-0000',
+        name: 'John Doe',
+        phone: '(47)00000-00000',
         address: 'Rua A, 10',
         city: 'São Francisco do Sul',
         neighborhood: 'Bairro',
@@ -50,10 +50,10 @@ describe('CreateCostomer', () => {
     ).rejects.toBeInstanceOf(AppError);
   });
 
-  it('Should be not able to create a phone with more 14 number.', async () => {
+  it('Should be not able to create a phone with same  number other customer.', async () => {
     await createCustomer.execute({
-      name: 'Jonh Doe',
-      phone: '(47)00000-0000',
+      name: 'John Doe',
+      phone: '(47)00000-0001',
       address: 'Rua A, 10',
       city: 'São Francisco do Sul',
       neighborhood: 'Bairro',
@@ -61,8 +61,8 @@ describe('CreateCostomer', () => {
 
     await expect(
       createCustomer.execute({
-        name: 'Jonh Doe',
-        phone: '(47)00000-0000',
+        name: 'John Doe',
+        phone: '(47)00000-0001',
         address: 'Rua A, 10',
         city: 'São Francisco do Sul',
         neighborhood: 'Bairro',

@@ -210,10 +210,18 @@ const RegisterProduct: React.FC = () => {
   useEffect(() => {
     async function handleSearch() {
       try {
-        const response = await api.get(`/products/${searchField}`);
+        const response = await api.get<ProductDataForm[]>(
+          `/products/${searchField}`,
+        );
+
+        const productsFormatted = response.data.map(product => ({
+          ...product,
+          priceFormatted: formatCurrency(Number(product.price)),
+          dateFormatted: format(parseISO(product.date), 'dd/MM/yyyy'),
+        }));
 
         if (searchField) {
-          setProducts(response.data);
+          setProducts(productsFormatted);
         }
       } catch {
         addToast({

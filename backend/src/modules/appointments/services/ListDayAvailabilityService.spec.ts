@@ -55,7 +55,6 @@ describe('listDayAvailability', () => {
     });
 
     const availability = await listDayAvailability.execute({
-      customer_id: '123456',
       year: 2020,
       month: 12,
       day: 20,

@@ -210,10 +210,18 @@ const RegisterExpense: React.FC = () => {
   useEffect(() => {
     async function handleSearch() {
       try {
-        const response = await api.get(`/expenses/${searchField}`);
+        const response = await api.get<ExpenseDataForm[]>(
+          `/expenses/${searchField}`,
+        );
+
+        const expensesFormatted = response.data.map(expense => ({
+          ...expense,
+          priceFormatted: formatCurrency(Number(expense.price)),
+          dateFormatted: format(parseISO(expense.date), 'dd/MM/yyyy'),
+        }));
 
         if (searchField) {
-          setExpenses(response.data);
+          setExpenses(expensesFormatted);
         }
       } catch {
         addToast({
