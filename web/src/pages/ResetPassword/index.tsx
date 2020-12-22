@@ -60,7 +60,7 @@ const ResetPassword: React.FC = () => {
 
         addToast({
           type: 'success',
-          title: 'Senha atualizada com succeso.',
+          title: 'Senha atualizada com sucesso.',
         });
 
         history.push('/');

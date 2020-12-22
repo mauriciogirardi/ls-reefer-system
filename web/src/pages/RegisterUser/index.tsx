@@ -98,7 +98,7 @@ const RegisterUser: React.FC = () => {
     setDeleteModalOpen(prevState => !prevState);
   }, []);
 
-  const handleDeleteProduct = useCallback(async (): Promise<void> => {
+  const handleDeleteUser = useCallback(async (): Promise<void> => {
     try {
       await api.delete(`/users/${deleteData.id}`);
 
@@ -135,7 +135,7 @@ const RegisterUser: React.FC = () => {
       {deleteModalOpen && (
         <ModalDelete
           setIsOpen={toggleDeleteModal}
-          handleDelete={handleDeleteProduct}
+          handleDelete={handleDeleteUser}
         />
       )}
 
@@ -153,7 +153,7 @@ const RegisterUser: React.FC = () => {
         />
         <Input
           name="password"
-          placeholder="password"
+          placeholder="Senha"
           containerStyle={{ maxWidth: '120px' }}
         />
         <Input

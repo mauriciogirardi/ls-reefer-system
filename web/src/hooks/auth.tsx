@@ -1,5 +1,4 @@
 import React, { createContext, useCallback, useContext, useState } from 'react';
-import { useHistory } from 'react-router-dom';
 
 import api from 'services/api';
 
@@ -31,8 +30,6 @@ interface IAuthContext {
 const AuthContext = createContext<IAuthContext>({} as IAuthContext);
 
 export const AuthProvider: React.FC = ({ children }) => {
-  const history = useHistory();
-
   const [data, setData] = useState<IAuthState>(() => {
     const token = localStorage.getItem('@lsreefer:token');
     const user = localStorage.getItem('@lsreefer:user');
@@ -80,8 +77,7 @@ export const AuthProvider: React.FC = ({ children }) => {
     localStorage.removeItem('@lsreefer:token');
     localStorage.removeItem('@lsreefer:user');
     setData({} as IAuthState);
-    history.push('/');
-  }, [history]);
+  }, []);
 
   return (
     <AuthContext.Provider
@@ -94,10 +90,6 @@ export const AuthProvider: React.FC = ({ children }) => {
 
 export function useAuth(): IAuthContext {
   const context = useContext(AuthContext);
-
-  if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider');
-  }
 
   return context;
 }
