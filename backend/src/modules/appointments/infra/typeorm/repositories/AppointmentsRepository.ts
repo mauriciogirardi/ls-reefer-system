@@ -68,13 +68,13 @@ export default class AppointmentsRepository implements IAppointmentsRepository {
     month,
     year,
   }: IFindAllInMonthFromProvider): Promise<Appointment[]> {
-    const pardedMonth = String(month).padStart(2, '0');
+    const parsedMonth = String(month).padStart(2, '0');
 
     const appointments = await this.ormRepository.find({
       where: {
         date: Raw(
           dateFieldName =>
-            `to_char(${dateFieldName}, 'MM-YYYY') = '${pardedMonth}-${year}'`,
+            `to_char(${dateFieldName}, 'MM-YYYY') = '${parsedMonth}-${year}'`,
         ),
       },
     });

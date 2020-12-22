@@ -12,8 +12,8 @@ import UsersRepository from '@modules/users/infra/typeorm/repositories/UsersRepo
 import IUserTokenRepository from '@modules/users/repositories/IUserTokenRepository';
 import UserTokenRepository from '@modules/users/infra/typeorm/repositories/UserTokenRepository';
 
-import ICustomerReposytory from '@modules/customers/repositories/ICustomerRepository';
-import CustomersReposirory from '@modules/customers/infra/typeorm/repositories/CustomersRepository';
+import ICustomerRepository from '@modules/customers/repositories/ICustomerRepository';
+import CustomersRepository from '@modules/customers/infra/typeorm/repositories/CustomersRepository';
 
 import IExpenseRepository from '@modules/expenses/repositories/IExpenseRepository';
 import ExpenseRepository from '@modules/expenses/infra/typeorm/repositories/ExpenseRepository';
@@ -39,9 +39,9 @@ container.registerSingleton<IUserTokenRepository>(
   UserTokenRepository,
 );
 
-container.registerSingleton<ICustomerReposytory>(
+container.registerSingleton<ICustomerRepository>(
   'CustomerRepository',
-  CustomersReposirory,
+  CustomersRepository,
 );
 
 container.registerSingleton<IExpenseRepository>(

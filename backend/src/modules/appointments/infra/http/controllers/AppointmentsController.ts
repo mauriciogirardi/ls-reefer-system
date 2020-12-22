@@ -5,7 +5,7 @@ import { classToClass } from 'class-transformer';
 
 import CreateAppointmentService from '@modules/appointments/services/CreateAppointmentService';
 import ListAppointmentsService from '@modules/appointments/services/ListAppointmentsService';
-import DeleteAppointmentService from '@modules/appointments/services/DeleteAppointmentservice';
+import DeleteAppointmentService from '@modules/appointments/services/DeleteAppointmentService';
 
 export default class AppointmentController {
   public async create(request: Request, response: Response): Promise<Response> {
